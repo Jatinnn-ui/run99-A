@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#202727">
+  <meta name="description" content="RUN 99. A cinematic, 99-second survival run through a city coming apart.">
+  <title>RUN 99 — Survive the city</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;450;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main id="game" aria-label="RUN 99 survival runner">
+    <canvas id="world" aria-label="Three-dimensional city game"></canvas>
+    <div class="world-treatment" aria-hidden="true"></div>
+    <div id="environment-edges" aria-hidden="true"></div>
+    <div class="film-grain" aria-hidden="true"></div>
+    <header id="instrument-header">
+      <a class="wordmark" href="./" aria-label="RUN 99 home">R<span class="wordmark-slash">/</span>99<span class="edition">CITY SURVIVAL DIVISION</span></a>
+      <div id="countdown-instrument" aria-label="Seconds remaining">
+        <div class="timer-caption"><span id="timer-caption">TIME IS YOUR ONLY WAY OUT</span><span class="timer-unit">SEC</span></div>
+        <div class="timer-value"><span id="countdown">99</span><span class="timer-decimal" id="countdown-decimal">.00</span></div>
+        <div class="time-track"><div id="time-progress"></div><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+      <div class="header-right"><span class="status-light"></span><span id="system-status">SYSTEM READY</span><button id="sound-toggle" title="Toggle sound" aria-label="Enable sound" aria-pressed="false"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 9h4l5-4v14l-5-4H4z"/><path id="sound-waves" d="m17 9 5 6m0-6-5 6"/></svg></button><button id="pause-button" aria-label="Pause game" hidden>Ⅱ</button></div>
+    </header>
+
+    <section id="intro" aria-labelledby="game-title">
+      <div class="intro-kicker"><span class="small-cross">+</span> AN URBAN SURVIVAL EXPERIMENT <span class="issue">/ 001</span></div>
+      <h1 id="game-title">RUN <span>99<span class="title-period">.</span></span></h1>
+      <h2>SURVIVE THE CITY.</h2>
+      <p class="intro-description">One city. Ten breaking points.<br>No way out but forward.</p>
+      <button id="start-button" class="primary-action"><span>BEGIN RUN</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button>
+      <div class="start-footnote"><span class="live-dot"></span> 99 SECONDS. ONE CHANCE.</div>
+    </section>
+
+    <aside id="mission-note" aria-label="Mission information"><span class="note-line"></span><span class="micro-label">CURRENT LOCATION</span><strong>DOWNTOWN<br>SECTOR 09</strong><span class="coordinates">40° 42′ N &nbsp; 74° 00′ W</span><div class="mission-stamp"><span>STRUCTURAL INTEGRITY</span><b>100<span>%</span></b><div class="integrity-bars"></div><small>STABLE. FOR NOW.</small></div></aside>
+
+    <div id="event-sign" role="status" aria-live="polite"><span class="event-symbol">!</span><div><span id="event-number">CITY ADVISORY / 01</span><strong id="event-title">HEAVY RAIN</strong><span id="event-detail">LOW VISIBILITY · SLIPPERY ROAD</span></div></div>
+    <div id="bonus" aria-live="polite"></div>
+    <div id="route-instrument" class="play-only" aria-label="Lane guidance"><span class="route-label">ROUTE ASSIST</span><div class="route-lanes"><i></i><i class="active"></i><i></i></div><span id="route-advice">KEEP MOVING</span></div>
+
+    <footer id="instrument-footer">
+      <div class="telemetry"><div><span class="micro-label">SPEED <small>KM/H</small></span><strong id="speed">000</strong><div class="speed-ticks"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div><span class="micro-label">DISTANCE <small>M</small></span><strong id="distance">0000</strong><span class="telemetry-note">EVERY METER COUNTS</span></div><div class="combo-telemetry"><span class="micro-label">COMBO</span><strong id="combo">×1<span>.0</span></strong><span class="telemetry-note" id="score">000000 PTS</span></div></div>
+      <div id="desktop-controls"><div><kbd>A</kbd><kbd>D</kbd><span>MOVE</span></div><div><kbd class="wide-key">SPACE</kbd><span>JUMP</span></div><div><kbd class="wide-key">SHIFT</kbd><span>DASH</span></div></div>
+      <div class="threat-instrument"><div class="threat-copy"><span class="micro-label">THREAT LEVEL</span><strong id="threat-label">NOMINAL</strong><span id="phase-label">01 / 10 — THE CALM</span></div><div class="threat-dial"><svg viewBox="0 0 80 80"><circle class="dial-track" cx="40" cy="40" r="33"/><circle id="threat-arc" cx="40" cy="40" r="33"/><path d="M40 12v5M40 63v5M12 40h5M63 40h5"/><path id="threat-needle" d="M40 40 23 27"/><circle class="dial-center" cx="40" cy="40" r="3"/></svg><span>!</span></div></div>
+    </footer>
+    <nav id="touch-controls" class="play-only" aria-label="Touch game controls"><div><button data-action="left" aria-label="Move left">←</button><button data-action="right" aria-label="Move right">→</button></div><div><button data-action="dash" id="touch-dash" aria-label="Dash">DASH</button><button data-action="jump" aria-label="Jump">↑</button></div></nav>
+    <div id="dash-indicator" class="play-only"><span>SHIFT / DASH</span><i><b id="dash-charge"></b></i></div>
+    <section id="pause-screen" hidden><span class="micro-label">CONNECTION TO THE CITY / HELD</span><h2>HOLD YOUR<br>BREATH.</h2><button id="resume-button" class="primary-action">RESUME RUN <span>→</span></button><p>ESC TO RESUME · THE CLOCK IS STOPPED</p></section>
+    <section id="result-screen" hidden aria-labelledby="result-title"><div class="result-topline"><span id="result-eyebrow">END OF TRANSMISSION</span><span>RUN 99 / FIELD REPORT</span></div><div class="result-main"><div id="result-time">99<span>.00</span></div><h2 id="result-title">SURVIVED</h2><p id="result-message">The city gave in. You didn't.</p><div class="result-stats"><div><span>DISTANCE</span><strong id="result-distance">0 <small>M</small></strong></div><div><span>SCORE</span><strong id="result-score">0</strong></div><div><span>BEST <i id="new-best" hidden>NEW</i></span><strong id="result-best">0</strong></div><div><span>EVENTS SURVIVED</span><strong id="result-events">10 <small>/ 10</small></strong></div><div><span>NEAR MISSES</span><strong id="result-misses">0</strong></div></div><button id="restart-button" class="primary-action"><span>RUN AGAIN</span><span>↗</span></button><span class="result-retry-note">SAME CITY. DIFFERENT WAY THROUGH.</span></div><div class="result-bottomline"><span>EVERY SECOND IS A SMALL VICTORY.</span><span id="result-id">SECTOR 09</span></div></section>
+    <div id="loading" role="status"><span>R/99</span><p id="loading-message">CONNECTING TO THE CITY<span class="loading-dots">...</span></p></div>
+    <div class="bottom-rule" aria-hidden="true"><span>RUN 99 © 2026</span><span>BUILT TO BREAK. MADE TO RUN.</span><span>EXPERIMENT NO. 099</span></div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
